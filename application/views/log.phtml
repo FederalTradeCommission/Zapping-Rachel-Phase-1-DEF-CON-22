@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Quick Call History Report</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Last 50 calls</h1>
+      </div>
+      <p class="lead">10 point scale the the caller is likely a robodialer.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Caller</th>
+            <th>Called</th>
+            <th>Strikes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach($data as $row):?>
+            <tr>
+              <td><?php echo $row['From']; ?></td>
+              <td><?php echo $row['Called']; ?></td>
+              <td><?php echo $row['Strikes'] < 0 ? 0 : ($row['Strikes'] > 10 ? 10 : $row['Strikes']); ?> / 10</td>
+            </tr>
+          <?php endforeach;?>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
